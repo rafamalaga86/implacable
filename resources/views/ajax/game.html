@@ -1,0 +1,14 @@
+<img class="card-imgCover" src="{{ game.cover_url }}" alt="{{ game.name }} Cover">
+<div class="card-scores d-flex">
+    <div class="score-metacritic_score" style="background-color: {{ game.metacritic_scoreColour }}">
+        <span style="colour: {{ game.metacriticFontColour }}">{{ game.metacritic_score }}<span>
+    </div>
+    <div class="score-hltb_length">{{ game.hltb_length }}</div>
+</div>
+<div class="card-content">
+    <div class="card-gameTitle">{{ game.name}}</div>
+    <blockquote class="card-text">{{ game.synopsis }}</blockquote>
+    {% if not game.stopped_playing_at %}
+        <button class="btn-finished btn btn-default btn-block" data-game-id="{{ game.id }}">I finished the game!</button>
+    {% endif %}
+</div>
