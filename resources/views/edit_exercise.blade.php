@@ -20,7 +20,11 @@
           </div>
           <div class="form-group">
             <label>Category</label>
-            <input class="form-control" type="text" name="category" value="{{ $exercise->category }}">
+            <select class="form-control tt-capitalize" name="category">
+              @foreach (\App\Exercise::getCategoryValues() as $category)
+                <option {{ $exercise->category == $category ? 'selected' : '' }} value="{{ $category }}">{{ $category }}</option>
+              @endforeach
+            </select>
           </div>
           <div class="form-group">
             <label>Description</label>

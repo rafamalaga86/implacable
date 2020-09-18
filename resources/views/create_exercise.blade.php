@@ -19,7 +19,11 @@
           </div>
           <div class="form-group">
             <label>Category</label>
-            <input class="form-control" type="text" name="category" value="{{ old('category') }}">
+            <select class="form-control tt-capitalize" name="category">
+              @foreach (\App\Exercise::getCategoryValues() as $category)
+                <option {{ old('category') == $category ? 'selected' : '' }} value="{{ $category }}">{{ $category }}</option>
+              @endforeach
+            </select>
           </div>
           <div class="form-group">
             <label>Description</label>

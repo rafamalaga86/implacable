@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ExerciseController extends Controller
 {
+    protected function getValidationRequirements(int $exception_id = null)
+    {
+        return [
+            'name'        => 'required|min:3|max:191|unique:exercises,name' . ($exception_id ? ',' . $exception_id : ''),
+            'category'    => 'required|in:' . implode(',', Exercise::getCategoryValues()),
+            'image_url'   => 'required|url',
+            'description' => 'nullable',
+        ];
+    }
+
+
     public function index(User $user)
     {
         $user = Auth::user() ?? User::find(config('app.default_user_id'));
@@ -33,7 +44,10 @@ class ExerciseController extends Controller
 
     public function store(Request $request)
     {
-        return back();
+        $request->validate($this->getValidationRequirements());
+        Exercise::create($request->all());
+
+        return redirect()->route('home')->with('success', 'Exercise created successfully');
     }
 
 
@@ -45,13 +59,7 @@ class ExerciseController extends Controller
 
     public function update(Request $request, Exercise $exercise)
     {
-        $request->validate([
-            'name'        => 'min:3|max:191',
-            'category'    => 'in:' . implode(',', Exercise::getCategoryValues()),
-            'image_url'   => 'url',
-            'description' => 'nullable',
-        ]);
-
+        $request->validate($this->getValidationRequirements($exercise->id));
         $exercise->update($request->all());
 
         return redirect()->route('home')->with('success', 'Exercise updated successfully');

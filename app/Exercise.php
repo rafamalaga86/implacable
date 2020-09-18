@@ -28,6 +28,8 @@ class Exercise extends Model
      */
     protected static $category_values = ['calisthenics', 'free weights', 'machines'];
 
+    protected $sessions_by_users;
+
 
     public static function getCategoryValues(): array
     {
@@ -51,12 +53,16 @@ class Exercise extends Model
      */
     public function getSessionsByUser(User $user, int $limit = null): Collection
     {
-        return Session::where('user_id', $user->id)
-            ->where('exercise_id', $this->id)
-            ->orderBy('date', 'desc')
-            ->orderBy('created_at', 'desc')
-            ->take($limit)
-            ->get();
+        if (!$this->sessions_by_user_cache) {
+            $this->sessions_by_user_cache = Session::where('user_id', $user->id)
+                ->where('exercise_id', $this->id)
+                ->orderBy('date', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->take($limit)
+                ->get();
+        }
+
+        return $this->sessions_by_user_cache;
     }
 
 
