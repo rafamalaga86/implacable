@@ -404,13 +404,13 @@ footer p {
 }
 
 .btn-tertiary {
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
   background-color: var(--white);
   border: none;
 }
 
 .btn-tertiary:hover {
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
   background-color: var(--white-darker);
   border: none;
 }
@@ -618,6 +618,14 @@ span.smaller {
   font-size: 0.7em;
   color: #bbb;
   font-weight: 400;
+}
+
+.bg-orange {
+  background-color: var(--orange);
+}
+
+.bg-orange span {
+  color: #eee;
 }
 
 .card-content {

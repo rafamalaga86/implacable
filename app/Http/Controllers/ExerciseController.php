@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Exercise;
+use App\Session;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +22,7 @@ class ExerciseController extends Controller
     }
 
 
-    public function index(User $user)
+    public function index()
     {
         $user = Auth::user() ?? User::find(config('app.default_user_id'));
         $exercises = Exercise::allThatHaveSessions($user);

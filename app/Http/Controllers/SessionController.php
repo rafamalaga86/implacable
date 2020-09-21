@@ -50,9 +50,19 @@ class SessionController extends Controller
 
     public function indexSessionsByDay(Request $request)
     {
-        $day_sessions = Session::fetchByDate(Auth::user(), 30);
+        $day_sessions = Session::fetchGroupedByDate(Auth::user(), 30);
 
         return view('sessions_by_day', compact(['day_sessions']));
+    }
+
+
+    public function indexInDate(Request $request)
+    {
+        $user = Auth::user() ?? User::find(config('app.default_user_id'));
+        $exercise_ids = Session::where('date', $request->input('date'))->get()->pluck('exercise_id');
+        $exercises = Exercise::whereIn('id', $exercise_ids)->get();
+
+        return view('show_exercises_and_sessions', compact(['exercises', 'user']));
     }
 }
 

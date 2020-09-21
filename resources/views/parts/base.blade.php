@@ -117,6 +117,7 @@
               @if (Auth::user())
                 <li><a href="/me">{{ Auth::user()->name }}</a></li>
                 <li><a href="{{ route('log_out') }}">Log out</a></li>
+                <li><a class="btn btn-tertiary" href="{{ action('SessionController@indexSessionsByDay') }}">Sessions by Day</a></li>
               @else
                 <li><a class="menu-item btn btn-secondary" href="{{ action('UserController@create') }}">Register</a></li>
                 <li><a href="" data-toggle="modal" data-target="#modal-login">Log in</a></li>

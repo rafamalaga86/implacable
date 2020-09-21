@@ -21,11 +21,6 @@ class UserController extends Controller
         'password' => 'nullable|confirmed|min:3|max:25',
     ];
 
-    public function test()
-    {
-        return 'Hello world';
-    }
-
 
     public function login(Request $request)
     {

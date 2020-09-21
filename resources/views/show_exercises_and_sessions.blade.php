@@ -26,7 +26,7 @@
             @if (isset($user) && $exercise->getSessionsByUser($user, 10))
               <div class="score-hltb_length full">
                 @foreach ($exercise->getSessionsByUser($user, 10) as $session)
-                  <p>
+                  <p class="{{ \Carbon\Carbon::today()->eq($session->date) ? 'bg-orange' : '' }}">
                     {{ $session->sets }} x {{ $session->reps }} <span class="smaller">reps</span>
                     @if ($session->weight)
                       <span class="smaller">with</span> {{ $session->weight }} <span class="smaller">Kg</span>

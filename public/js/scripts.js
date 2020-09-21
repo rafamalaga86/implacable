@@ -3,7 +3,7 @@
 
 // Detect broken images
 // =======================================================
-var image_repo = 'http://images.implacable.rafaelgarciadoblas.com';
+var image_repo = 'http://images.implacable.rafaelgarciadoblas.com/images/';
 
 $('img').on('error', function() { // Event on image broken
   var src = $(this).attr('src');

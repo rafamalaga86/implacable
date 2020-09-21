@@ -20,9 +20,9 @@ class Session extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function fetchByDate(User $user, int $limit = null, int $offset = null)
+    public static function fetchGroupedByDate(User $user, int $limit = null, int $offset = null)
     {
-        $query_builder = Session::selectRaw("date, GROUP_CONCAT(exercises.name) as exercises")
+        $query_builder = Session::selectRaw("date, GROUP_CONCAT(exercises.name ORDER BY exercises.name) as exercises")
             ->join('exercises', 'sessions.exercise_id', 'exercises.id')
             ->where('sessions.user_id', $user->id)
             ->groupBy('date')
