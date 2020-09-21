@@ -67,7 +67,7 @@
 
   </head>
 
-  <body>
+  <body data-storage-url="{{ config('filesystems.domain') . config('filesystems.disks.ftp.root') }}">
     <div class="overlay"></div>
 
     <div class="wrapper">

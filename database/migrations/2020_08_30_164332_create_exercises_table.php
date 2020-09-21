@@ -26,6 +26,8 @@ class CreateExercisesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
+        
+
         $data = [
             [2, 'Sentadillas', 'free weights', 'http://i.blogs.es/93405c/sentadilla/1366_2000.jpg'],
             [2, 'Peso Muerto', 'free weights', 'http://www.menshealthlatam.com/wp-content/uploads/2018/07/PESO-MUERTO-CON-BARRA-770x393.jpg'],
@@ -47,7 +49,7 @@ class CreateExercisesTable extends Migration
             [2, 'Flexión inclinada','calisthenics','http://hiitacademy.com/wp-content/uploads/2015/01/incline_push_ups-900x389.jpg'],
             [2, 'Flexión con manos separadas','calisthenics','http://static.wixstatic.com/media/80fd0d_22649981df7c4409be27af455f847497.png/v1/fill/w_204,h_135,al_c,q_85,usm_0.66_1.00_0.01/80fd0d_22649981df7c4409be27af455f847497.webp'],
             [2, 'Flexión con manos juntas (o diamante)','calisthenics','http://www.ilovefit.org/wp-content/uploads/2017/07/flexiones-diamante.jpg'],
-            [2, 'Flexión en "T"','calisthenics','http://www.street-workouts.com/wp-content/uploads/2016/04/T-push-up.jpg'],
+            [2, 'Flexión en "T"','calisthenics','http://images.implacable.rafaelgarciadoblas.com/repo/T-push-up.jpg'],
             [2, 'Flexión sobre balón','calisthenics','http://www.ejercicios.org/images/flexion-con-balon-medicinal-en-una-mano1.jpg'],
             [2, 'Flexión Superman','calisthenics','http://img1.hkrtcdn.com/ff/superman-abs.png'],
             [2, 'Flexión con palmada','calisthenics','http://smartfitjay.files.wordpress.com/2014/08/clap-push-ups.jpg'],
@@ -78,7 +80,7 @@ class CreateExercisesTable extends Migration
             [2, 'Abdominales clásico','calisthenics','http://i2.wp.com/pilicuadrado.com/wp-content/uploads/2014/06/crunch-abdominal1.jpg?w=550&ssl=1'],
             [2, 'Levantamiento de piernas colgado (piernas encogidas)','calisthenics','http://www.deportesdeciudad.com/wp-content/uploads/2018/07/elevaciones-pierna-con-rotacio%CC%81n-1024x913.png'],
             [2, 'Levantamiento de piernas colgado (piernas estiradas)','calisthenics','https://i.blogs.es/a6cd11/elevacion-piernas/1366_2000.jpg'],
-            [2, 'Plancha','calisthenics','http://www.got-big.de/Blog/wp-content/uploads/2017/04/plank-frau-titel-300x157.jpg'],
+            [2, 'Plancha','calisthenics','https://cdn.brujulabike.com/media/1840/conversions/plan2-1000.jpg'],
             [2, 'Plancha con flexión','calisthenics','http://www.entrenamientos.com/media/cache/exercise_375/uploads/exercise/plancha-flexion-brazos-1548%20.png'],
             [2, 'Plancha lateral','calisthenics','http://1.bp.blogspot.com/-qirm5gWlXnU/XouDlb9WJDI/AAAAAAAACeE/oqx2ArtqqpgtYwkT838AILLnytBarRz5wCNcBGAsYHQ/s400/plancha-lateral.jpg'],
             [2, 'Plancha lateral con flexión','calisthenics','https://www.hola.com/imagenes/belleza/20171215111399/ejercicios-plancha-abdominales-perfectos-belleza/0-542-340/flacidezabdominal2--a.jpg'],
@@ -86,7 +88,7 @@ class CreateExercisesTable extends Migration
             [2, 'Lumbares','calisthenics','http://www.adicciongym.com/wp-content/uploads/2017/07/revestimiento-2.jpg'],
             [2, 'Abdominales en "V"','calisthenics','http://www.comunidadfitnessecuador.com/wp-content/uploads/2015/12/rsz_pasos_de_la_vit_sit_ups.jpg'],
             [2, 'Flexión S&M','calisthenics','http://shape180fitness.files.wordpress.com/2014/02/pushup-birddog.jpg'],
-            [2, 'Bicicleta','calisthenics','http://blog.nutritienda.com/wp-content/uploads/2016/05/Abdominales-Bicicleta-1-e1463136600661-1024x907.jpg'],
+            [2, 'Bicicleta','calisthenics','http://images.implacable.rafaelgarciadoblas.com/repo/ab-bicicleta.jpg'],
             // [2, 'Pies a manos','calisthenics',''],
             [2, 'Bandera','calisthenics','http://www.masmusculo.com/blog/wp-content/uploads/2016/02/9539693d-e1a5-44e9-bb5f-ac67630a14f2-300x165.jpg'],
             [2, 'Burpees','calisthenics','http://risetoit.co.za/wp-content/uploads/2013/04/Burpees.jpg'],
@@ -94,7 +96,6 @@ class CreateExercisesTable extends Migration
             // [2, 'Escaladores inversos','calisthenics',''],
             [2, 'Jumping Jacks','calisthenics','http://fitpass-images.s3.amazonaws.com/content_blog_inner_64A71045.png'],
             [2, 'Flexión a plancha','calisthenics','http://entrenar.me/blog/wp-content/uploads/2017/03/ejercicios-de-triceps-plancha-281x300.jpg'],
-            [2, 'Levantamientos de rodilla','calisthenics','http://mujer.fitness/wp-content/uploads/2018/02/Los-levantamientos-de-rodillas-o-high-knees.jpg'],
             [2, 'Pino puente','calisthenics','http://www.wikihow.com/images/thumb/e/e8/Do-a-Front-Walkover-Step-1-Version-8.jpg/v4-728px-Do-a-Front-Walkover-Step-1-Version-8.jpg.webp'],
             [2, 'Esprintar','calisthenics','http://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt1e6294d9666ea432/5de0bb60940c0264137801e3/SPRINT_LOWB_HEAD.jpg?format=pjpg&auto=webp&fit=crop&quality=76&width=1232&height=496'],
         ];
@@ -104,7 +105,7 @@ class CreateExercisesTable extends Migration
                 'user_id'   => $row[0],
                 'name'      => $row[1],
                 'category'  => $row[2],
-                'image_url' => $row[3]
+                'image_url' => $row[3],
             ]);
         }
     }

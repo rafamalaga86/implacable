@@ -3,23 +3,22 @@
 
 // Detect broken images
 // =======================================================
-var image_repo = 'http://images.implacable.rafaelgarciadoblas.com/images/';
+// var image_repo = $('body').data('storage-url');
 
-$('img').on('error', function() { // Event on image broken
-  var src = $(this).attr('src');
-  $(this).parent().addClass('card-bg-3'); // Mark as image not found
+// $('img').on('error', function() { // Event on image broken
+//   var src = $(this).attr('src');
+//   // $(this).parent().addClass('card-bg-3'); // Mark as image not found
 
-  if (!src.includes(image_repo)) { // Prevent a loop if the image doesnt exist in image_repo
-    var file_name = src.substring(src.lastIndexOf('/') + 1);
-    var own_url   = image_repo + '/' + file_name;
-    $(this).attr('src', own_url);
-  } else {
-    // $(this).attr('src', '/images/404.jpg');
-  }
-});
+//   if (!src.includes(image_repo)) { // Prevent a loop if the image doesnt exist in image_repo
+//     var file_name = src.substring(src.lastIndexOf('/') + 1);
+//     var own_url   = image_repo + '/' + file_name;
+//     $(this).attr('src', own_url);
+//   } else {
+//     // $(this).attr('src', '/images/404.jpg');
+//   }
+// });
 
 $('.image_url_event').on('change', function(event) {
-  console.log($('.image_url_event').val());
   $('.put-image').attr('src', $('.image_url_event').val());
 });
 

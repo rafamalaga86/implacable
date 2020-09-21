@@ -14,7 +14,7 @@ class Exercise extends Model
      * The attributes that are mass assignable.
      * @var array
      */
-    protected $fillable = ['name', 'category', 'image_url', 'description', 'user_id'];
+    protected $fillable = ['name', 'category', 'image_name', 'image_url', 'description', 'user_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,6 +43,12 @@ class Exercise extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    public function getImageFullUrl(): string
+    {
+        return config('filesystems.domain') . config('filesystems.disks.ftp.root') . $this->image_name;
     }
 
 

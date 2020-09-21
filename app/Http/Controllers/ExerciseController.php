@@ -8,6 +8,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ExerciseController extends Controller
 {
@@ -47,7 +48,21 @@ class ExerciseController extends Controller
     public function store(Request $request)
     {
         $request->validate($this->getValidationRequirements());
-        Exercise::create($request->all());
+        $details = $request->all();
+
+        $tmp = preg_replace('/\?[^?]*$/', '', $details['image_url']);
+        $tmp = explode('.', $tmp);
+        $extension = end($tmp);
+        $file_name = str_slug($details['name']) . '.' . $extension;
+        $successful_upload = Storage::put($file_name, file_get_contents($details['image_url']));
+
+        if (!$successful_upload) {
+            return abort(500, 'There was a problem with the image upload to FTP server');
+        }
+
+        $details['image_name'] = $file_name;
+
+        Exercise::create($details);
 
         return redirect()->route('home')->with('success', 'Exercise created successfully');
     }

@@ -6,7 +6,7 @@
 @section('cards')
       @forelse ($exercises as $exercise)
         <div class="card card-{{ $exercise->id }}" data-exercise-id="{{ $exercise->id }}" data-exercise-name="{{ $exercise->name }}">
-          <img class="card-imgCover" src="{{ $exercise->image_url }}" alt="{{ $exercise->name }}">
+          <img class="card-imgCover" src="{{ image_repo_asset($exercise->image_name) }}" alt="{{ $exercise->name }}">
           <div class="card-imgOverlay card-button-bar">
             @include('parts/card-button-bar')
           </div>
