@@ -46,12 +46,6 @@ class Exercise extends Model
     }
 
 
-    public function getImageFullUrl(): string
-    {
-        return config('filesystems.domain') . config('filesystems.disks.ftp.root') . $this->image_name;
-    }
-
-
     /**
      * Get all the sessions of this exercise made by the User
      * @param User $user

@@ -81,7 +81,7 @@ return [
 
     ],
 
-    'domain' => env('FILESYSTEM_DOMAIN'),
+    'images_url' => env('IMAGES_URL'),
 
     /*
     |--------------------------------------------------------------------------
