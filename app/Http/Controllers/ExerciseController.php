@@ -50,17 +50,7 @@ class ExerciseController extends Controller
         $request->validate($this->getValidationRequirements());
         $details = $request->all();
 
-        $tmp = preg_replace('/\?[^?]*$/', '', $details['image_url']);
-        $tmp = explode('.', $tmp);
-        $extension = end($tmp);
-        $file_name = str_slug($details['name']) . '.' . $extension;
-        $successful_upload = Storage::put($file_name, file_get_contents($details['image_url']));
-
-        if (!$successful_upload) {
-            return abort(500, 'There was a problem with the image upload to FTP server');
-        }
-
-        $details['image_name'] = $file_name;
+        $details['image_name'] = $this->uploadNewImage($details['image_url'], $details['name']);
 
         Exercise::create($details);
 
@@ -77,9 +67,74 @@ class ExerciseController extends Controller
     public function update(Request $request, Exercise $exercise)
     {
         $request->validate($this->getValidationRequirements($exercise->id));
-        $exercise->update($request->all());
+        $details = $request->all();
+
+        $details['image_name'] = $this->uploadSubstituteImage($exercise, $details['image_url'], $details['name']);
+
+        $exercise->update($details);
 
         return redirect()->route('home')->with('success', 'Exercise updated successfully');
+    }
+
+
+    protected function uploadNewImage(string $image_url, string $exercise_name): string
+    {
+        $tmp = preg_replace('/\?[^?]*$/', '', $image_url);
+        $tmp = explode('.', $tmp);
+        $extension = end($tmp);
+        $file_name = str_slug($exercise_name) . '.' . $extension;
+
+        while (Storage::exists($file_name)) {
+            $file_name = $file_name . '-' . rand(10);
+        }
+        
+        $successful_upload = Storage::put($file_name, file_get_contents($image_url));
+
+        if (!$successful_upload) {
+            return abort(500, 'There was a problem with the image upload to FTP server');
+        }
+
+        return $file_name;
+    }
+
+
+    protected function uploadSubstituteImage(Exercise $exercise, string $image_url, string $exercise_name): string
+    {
+        if ($image_url == $exercise->image_url) { // Case 0: The url of the image didn't change
+            return $exercise->image_name; // Do nothing
+        }
+
+        list($file_name, $extension) = $this->getFilenameAndExtension($image_url, $exercise_name);
+        $new_file_content = file_get_contents($image_url);
+        $old_file_content = Storage::get($exercise->image_name);
+
+        if ($new_file_content == $old_file_content) { // The content of the new file is the same
+            return $exercise->image_name; // Do nothing
+        }
+
+        while (Storage::exists($file_name)) {
+            $file_name = $file_name . '-' . rand(10);
+        }
+
+        $successful_upload = Storage::put($file_name, $new_file_content);
+
+        if (!$successful_upload) {
+            return abort(500, 'There was a problem with the image upload to FTP server');
+        }
+
+        Storage::delete($exercise->image_name);
+        return $file_name;
+    }
+
+
+    protected function getFilenameAndExtension(string $image_url, string $exercise_name)
+    {
+        $tmp = preg_replace('/\?[^?]*$/', '', $image_url);
+        $tmp = explode('.', $tmp);
+        $extension = end($tmp);
+        $file_name = str_slug($exercise_name) . '.' . $extension;
+
+        return [$file_name, $extension];
     }
 }
 

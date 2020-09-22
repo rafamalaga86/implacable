@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:4|max:8',
+            'password' => 'required|min:3|max:25',
         ]);
 
         $is_logged = Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], true);

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
   Route::get('/me', 'UserController@edit');
 Route::patch('/user/{user}', 'UserController@update');
 
-Route::resource('exercises', 'ExerciseController')->only(['index', 'create', 'store', 'edit', 'update', 'delete']);
+Route::resource('exercises', 'ExerciseController')->only(['index', 'create', 'store', 'edit', 'update']);
     Route::get('/exercises/all', 'ExerciseController@indexAll');
     Route::get('/exercises/{exercise}/sessions', 'SessionController@indexByExercise');
 

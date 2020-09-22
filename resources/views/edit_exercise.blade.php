@@ -9,7 +9,7 @@
       <div class="col-lg-6">
         <form class="text-left" action="{{ action('ExerciseController@update', $exercise->id) }}" method="POST">
           @csrf
-          {{ method_field('PATCH') }}
+          {{ method_field('PUT') }}
           <div class="form-group">
             <label>Name</label>
             <input class="form-control" type="text" name="name" value="{{ $exercise->name }}">
