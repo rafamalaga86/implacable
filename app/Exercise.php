@@ -72,7 +72,7 @@ class Exercise extends Model
      */
     public static function allThatHaveSessions(User $user): Collection
     {
-        $session_ids = DB::table('sessions')->select('exercise_id')->distinct()->get()->pluck('exercise_id')->toArray();
+        $session_ids = DB::table('sessions')->where('user_id', $user->id)->select('exercise_id')->distinct()->get()->pluck('exercise_id')->toArray();
 
         return  Exercise::whereIn('id', $session_ids)->get();
     }

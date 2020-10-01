@@ -22,7 +22,7 @@
         </div>
       @empty
         <div class="container">
-          <span>Sorry, we did not find exercise. :)</span>
+          <span>Sorry, we did not find any exercise. :)</span>
         </div>
       @endforelse
 @endsection

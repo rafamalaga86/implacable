@@ -11,7 +11,14 @@
 
 @section('cards')
       @forelse ($exercises as $exercise)
-        <div class="card card-{{ $exercise->id }}" data-exercise-id="{{ $exercise->id }}" data-exercise-name="{{ $exercise->name }}" data-last-sets="{{ $exercise->getSessionsByUser($user, 10) ? $exercise->getSessionsByUser($user, 10)[0]->sets : '' }}" data-last-reps="{{ $exercise->getSessionsByUser($user, 10) ? $exercise->getSessionsByUser($user, 10)[0]->reps : '' }}" data-last-weight="{{ $exercise->getSessionsByUser($user, 10) ? $exercise->getSessionsByUser($user, 10)[0]->weight : '' }}" data-last-level="{{ $exercise->getSessionsByUser($user, 10) ? $exercise->getSessionsByUser($user, 10)[0]->level : '' }}">
+        <div class="card card-{{ $exercise->id }}"
+          data-exercise-id="{{ $exercise->id }}"
+          data-exercise-name="{{ $exercise->name }}"
+          data-last-sets="{{ !$exercise->getSessionsByUser($user, 10)->isEmpty() ? $exercise->getSessionsByUser($user, 10)[0]->sets : '' }}"
+          data-last-reps="{{ !$exercise->getSessionsByUser($user, 10)->isEmpty() ? $exercise->getSessionsByUser($user, 10)[0]->reps : '' }}"
+          data-last-weight="{{ !$exercise->getSessionsByUser($user, 10)->isEmpty() ? $exercise->getSessionsByUser($user, 10)[0]->weight : '' }}"
+          data-last-level="{{ !$exercise->getSessionsByUser($user, 10)->isEmpty() ? $exercise->getSessionsByUser($user, 10)[0]->level : '' }}"
+        >
           <img class="card-imgCover" src="{{ image_repo_asset($exercise->image_name) }}" alt="{{ $exercise->name }}">
           <div class="card-imgOverlay card-button-bar">
             @include('parts/card-button-bar')
@@ -43,7 +50,7 @@
         </div>
       @empty
         <div class="container">
-          <span>Sorry, we did not find exercise. :)</span>
+          <span>Sorry, we did not find any exercise. :)</span>
         </div>
       @endforelse
 @endsection

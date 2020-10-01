@@ -96,6 +96,7 @@
               <td class="text-center weight">{{ $session->weight ?? '-' }}</td>
               <td class="text-center level">{{ $session->level ?? '-' }}</td>
               <td class="text-center"><small><a href="#" class="action-modify-modal">Modify</a></small></td>
+              <td class="text-center"><small><a href="#" class="action-delete-modal">Delete</a></small></td>
             </tr>
           @endforeach
           </tbody>
