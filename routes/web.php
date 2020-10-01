@@ -26,7 +26,7 @@ Route::resource('exercises', 'ExerciseController')->only(['index', 'create', 'st
 
     Route::get('/sessions/date', 'SessionController@indexInDate');
     Route::get('/sessions/date/index', 'SessionController@indexSessionsByDay');
-Route::resource('sessions', 'SessionController')->only(['update', 'store']);
+Route::resource('sessions', 'SessionController')->only(['update', 'store', 'destroy']);
 
 Route::get('/test', 'UserController@test')->name('test');
 Route::get('/', 'ExerciseController@index')->name('home');

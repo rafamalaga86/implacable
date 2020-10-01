@@ -645,6 +645,10 @@ $(document).ready(function() {
     modal.modal('show');
   });
 
+  $('.action-delete').on('click', function() {
+    $(this).parents('form').submit();
+  });
+
   $('.action-open-modal-add-session').on('click', function(){
     var card = $(this).parents('.card');
     var modal = $('#modal-add-session');
@@ -661,7 +665,5 @@ $(document).ready(function() {
     modal.find('.copy-weight').val(last_weight);
     modal.find('.copy-level').val(last_level);
   });
-
-
 
 });

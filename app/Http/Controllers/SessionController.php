@@ -40,6 +40,15 @@ class SessionController extends Controller
         return $success ? back()->with('success', 'Session added successfully') : back()->with('error', 'Sessions wasn\'t added');
     }
 
+    public function destroy(Session $session)
+    {
+        $success = $session->delete();
+
+        $flash = $success ? ['success', 'Session deleted successfully'] : ['error', 'Sessions wasn\'t deleted'];
+
+        return back()->with(...$flash);
+    }
+
 
     public function indexByExercise(Exercise $exercise)
     {

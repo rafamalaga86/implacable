@@ -12,6 +12,9 @@
       <div class="col-xl-8 mb-30">
         {{-- <div class="played-list data-game-id" data-exercise-id="{{ $exercise->id }}"> --}}
 
+        @if ($sessions->isEmpty())
+          Sorry, you have no session of this exercise yet
+        @else
         <table class="table table-striped table-dark">
           <thead>
             <tr>
@@ -96,12 +99,18 @@
               <td class="text-center weight">{{ $session->weight ?? '-' }}</td>
               <td class="text-center level">{{ $session->level ?? '-' }}</td>
               <td class="text-center"><small><a href="#" class="action-modify-modal">Modify</a></small></td>
-              <td class="text-center"><small><a href="#" class="action-delete-modal">Delete</a></small></td>
+              <td class="text-center">
+                <form action="{{ action('SessionController@destroy', $session->id) }}" method="post">
+                  @csrf
+                  {{ method_field('DELETE') }}
+                  <small><a href="#" class="action-delete">Delete</a></small>
+                </form>
+              </td>
             </tr>
           @endforeach
           </tbody>
-          </table>
-
+        </table>
+        @endif
       </div>
 
       <div class="col-xl-4 mb-30">
