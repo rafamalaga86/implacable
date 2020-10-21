@@ -368,6 +368,7 @@ footer p {
   cursor: pointer;
   font-family: var(--title-font);
   font-weight: 300;
+  border-radius: 0 !important;
 }
 
 .btn-primary {
@@ -502,6 +503,7 @@ main {
 
   display: inline-block;
   vertical-align: top;
+  border-radius: 0 !important;
 }
 
 .card.without-notes {background-color: var(--primary-color)}
@@ -523,7 +525,6 @@ main {
   padding: 5px 10px;
   visibility: hidden;
   background: rgba(0, 0, 0, 0.5);
-  border-radius: 0 0 0 4px;
   position: absolute;
   top: 0;
   right: 0;
@@ -692,7 +693,6 @@ input[type=number] {
 
 input.form-control {
   width: 100%;
-  border-radius: .15rem;
   background-color: var(--white);
 }
 
@@ -866,7 +866,6 @@ section.title.small h1, section.title.small h2 {
   background: var(--gray);
   padding: .75rem 1.25rem;
   margin-bottom: 1rem;
-  border-radius: .25rem;
 }
 
 .note-text {
@@ -963,7 +962,6 @@ section.danger-zone {
 }
 
 .checkbox-wrapper .checkbox-fancy-label {
-  border-radius: .15rem;
   cursor: pointer;
   position: relative;
   width: 30px;
@@ -982,7 +980,6 @@ section.danger-zone {
 }
 
 .checkbox-wrapper .checkbox-fancy-label.check {
-  border-radius: 5px;
 }
 
 .checkbox-wrapper .checkbox-fancy-label .fa {
