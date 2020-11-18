@@ -55,4 +55,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Exercise::class);
     }
+
+
+    public static function getById(int $id)
+    {
+        return User::find($id);
+    }
 }

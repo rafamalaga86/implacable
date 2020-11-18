@@ -25,7 +25,7 @@ class ExerciseController extends Controller
 
     public function index()
     {
-        $user = Auth::user() ?? User::find(config('app.default_user_id'));
+        $user = Auth::user() ?? User::getById(config('app.default_user_id'));
         $exercises = Exercise::allThatHaveSessions($user);
 
         return view('show_exercises_and_sessions', compact(['exercises', 'user']));
