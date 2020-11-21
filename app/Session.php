@@ -39,11 +39,3 @@ class Session extends Model
         return $query_builder->get();
     }
 }
-
- // $table->unsignedBigInteger('user_id'); // Who made the exercise
- //            $table->unsignedBigInteger('exercise_id'); // Which exercise made
- //            $table->date('date');
- //            $table->unsignedTinyInteger('sets');
- //            $table->unsignedTinyInteger('reps');
- //            $table->unsignedTinyInteger('level')->nullable();
- //            $table->unsignedTinyInteger('weight')->nullable();

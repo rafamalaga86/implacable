@@ -28,13 +28,6 @@ class CacheUserProvider extends EloquentUserProvider
      */
     public function retrieveById($id)
     {
-        return Cache::get("user.$id") ?? $this->cacheAndGet($id);
-    }
-
-    protected function cacheAndGet($id)
-    {
-        $user = parent::retrieveById($id);
-        Cache::put("user.$id", $user);
-        return $user;
+        return Cache::get('user.' . $id) ?? parent::retrieveById($id);
     }
 }

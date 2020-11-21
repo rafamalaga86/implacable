@@ -22,7 +22,7 @@ Route::patch('/user/{user}', 'UserController@update');
 
 Route::resource('exercises', 'ExerciseController')->only(['index', 'create', 'store', 'edit', 'update']);
     Route::get('/exercises/all', 'ExerciseController@indexAll');
-    Route::get('/exercises/{exercise}/sessions', 'SessionController@indexByExercise');
+    Route::get('/exercises/{exercise_id}/sessions', 'SessionController@indexByExercise');
 
     Route::get('/sessions/date', 'SessionController@indexInDate');
     Route::get('/sessions/date/index', 'SessionController@indexSessionsByDay');

@@ -7,6 +7,7 @@ use App\Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class SessionController extends Controller
 {
@@ -50,8 +51,12 @@ class SessionController extends Controller
     }
 
 
-    public function indexByExercise(Exercise $exercise)
+    public function indexByExercise($exercise_id)
     {
+        Cache::get("exercise.$exercise_id", function () {
+            return Exercise::find($exercise_id);
+        });
+
         $sessions = $exercise->getSessionsByUser(Auth::user() ?? User::find(config('app.default_user_id')));
 
         return view('session_index', compact(['sessions', 'exercise']));
